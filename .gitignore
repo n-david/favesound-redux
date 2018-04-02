@@ -4,3 +4,4 @@ dist/server
 npm-debug.log
 yarn.lock
 package-lock.json
+.idea
