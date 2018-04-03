@@ -16,7 +16,7 @@ function FavoritesList({
   requestInProcess,
   isExpanded,
   onSetToggle,
-  onFetchFavorites
+  onFetchFavorites,
 }) {
   return (
     <List
@@ -45,14 +45,14 @@ function mapStateToProps(state) {
     favorites: state.user.favorites,
     nextHref,
     requestInProcess,
-    isExpanded
+    isExpanded,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onSetToggle: bindActionCreators(actions.setToggle, dispatch),
-    onFetchFavorites: bindActionCreators(actions.fetchFavorites, dispatch)
+    onFetchFavorites: bindActionCreators(actions.fetchFavorites, dispatch),
   };
 }
 
@@ -64,7 +64,7 @@ FavoritesList.propTypes = {
   paginateLinks: PropTypes.object,
   toggle: PropTypes.object,
   onSetToggle: PropTypes.func,
-  onFetchFavorites: PropTypes.func
+  onFetchFavorites: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesList);

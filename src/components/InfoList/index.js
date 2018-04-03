@@ -4,12 +4,9 @@ import classNames from 'classnames';
 import map from '../../services/map';
 
 function InfoItem({ infoItem }) {
-  const infoItemClass = classNames(
-    'info-list-item',
-    {
-      'info-list-item-active': infoItem.activeSort
-    }
-  );
+  const infoItemClass = classNames('info-list-item', {
+    'info-list-item-active': infoItem.activeSort,
+  });
 
   return (
     <div className={infoItemClass} title={infoItem.title}>
@@ -29,7 +26,7 @@ function InfoList({ information }) {
 }
 
 InfoList.propTypes = {
-  information: PropTypes.array
+  information: PropTypes.array,
 };
 
 export default InfoList;

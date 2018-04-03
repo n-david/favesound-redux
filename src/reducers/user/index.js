@@ -80,10 +80,7 @@ function removeFromFavorites(state, trackId) {
 }
 
 function removeWithIndex(list, index) {
-  return [
-    ...list.slice(0, index),
-    ...list.slice(index + 1)
-  ];
+  return [...list.slice(0, index), ...list.slice(index + 1)];
 }
 
 function getConcatList(currentList, concatList) {

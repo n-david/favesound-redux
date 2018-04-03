@@ -3,7 +3,7 @@ import merge from 'lodash/fp/merge';
 
 const initialState = {
   users: {},
-  tracks: {}
+  tracks: {},
 };
 
 export default function(state = initialState, action) {

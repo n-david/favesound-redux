@@ -22,21 +22,16 @@ function PlaylistMenu({ onClearPlaylist }) {
     <div className="playlist-menu">
       <div>Playlist</div>
       <div>
-        <ButtonInline onClick={onClearPlaylist}>
-          Clear playlist
-        </ButtonInline>
+        <ButtonInline onClick={onClearPlaylist}>Clear playlist</ButtonInline>
       </div>
     </div>
   );
 }
 
 function Playlist({ toggle, playlist, trackEntities, onClearPlaylist }) {
-  const playlistClass = classNames(
-    'playlist',
-    {
-      'playlist-visible': toggle[toggleTypes.PLAYLIST]
-    }
-  );
+  const playlistClass = classNames('playlist', {
+    'playlist-visible': toggle[toggleTypes.PLAYLIST],
+  });
 
   return (
     <div className={playlistClass}>
@@ -54,7 +49,7 @@ function mapStateToProps(state) {
   return {
     toggle: state.toggle,
     playlist: state.player.playlist,
-    trackEntities: state.entities.tracks
+    trackEntities: state.entities.tracks,
   };
 }
 
@@ -68,7 +63,7 @@ Playlist.propTypes = {
   toggle: PropTypes.object,
   playlist: PropTypes.array,
   trackEntities: PropTypes.object,
-  onClearPlaylist: PropTypes.func
+  onClearPlaylist: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist);

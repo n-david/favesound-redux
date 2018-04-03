@@ -9,15 +9,12 @@ const DURATION_FILTER_NAMES = {
 
 const DURATION_FILTER_FUNCTIONS = {
   [filterTypes.ALL]: () => true,
-  [filterTypes.FILTER_DURATION_TRACK]: (activity) => !isMixDuration(activity),
-  [filterTypes.FILTER_DURATION_MIX]: (activity) => isMixDuration(activity),
+  [filterTypes.FILTER_DURATION_TRACK]: activity => !isMixDuration(activity),
+  [filterTypes.FILTER_DURATION_MIX]: activity => isMixDuration(activity),
 };
 
 function isMixDuration(activity) {
   return moment.duration(activity.duration).asMinutes() > 15;
 }
 
-export {
-  DURATION_FILTER_NAMES,
-  DURATION_FILTER_FUNCTIONS,
-};
+export { DURATION_FILTER_NAMES, DURATION_FILTER_FUNCTIONS };

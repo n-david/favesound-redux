@@ -71,10 +71,14 @@ function SessionAction({ currentUser, onLogin, onLogout, onDashboard }) {
   return (
     <div>
       <div className="dashboard-link">
-        { currentUser ? <Dashboard onDashboard={onDashboard} /> : ' ' }
+        {currentUser ? <Dashboard onDashboard={onDashboard} /> : ' '}
       </div>
       <div className="session-link">
-        { currentUser ? <Logout onLogout={onLogout} /> : <Login onLogin={onLogin} /> }
+        {currentUser ? (
+          <Logout onLogout={onLogout} />
+        ) : (
+          <Login onLogin={onLogin} />
+        )}
       </div>
     </div>
   );
@@ -92,7 +96,13 @@ function MenuList({ selectedGenre }) {
   );
 }
 
-function Header({ currentUser, selectedGenre, onLogin, onLogout, onDashboard }) {
+function Header({
+  currentUser,
+  selectedGenre,
+  onLogin,
+  onLogout,
+  onDashboard,
+}) {
   return (
     <div className="header">
       <div className="header-content">
@@ -112,7 +122,7 @@ function Header({ currentUser, selectedGenre, onLogin, onLogout, onDashboard }) 
 function mapStateToProps(state) {
   return {
     currentUser: state.session.user,
-    selectedGenre: state.browse.selectedGenre
+    selectedGenre: state.browse.selectedGenre,
   };
 }
 

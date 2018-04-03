@@ -6,12 +6,14 @@ import { syncEntities } from '../../actions/entities';
 export function removeFromFavorites(trackId) {
   return {
     type: actionTypes.REMOVE_FROM_FAVORITES,
-    trackId
+    trackId,
   };
 }
 
-export const like = (track) => (dispatch) => {
-  fetch(apiUrl(`me/favorites/${track.id}`, '?'), { method: track.user_favorite ? 'delete' : 'put' })
+export const like = track => dispatch => {
+  fetch(apiUrl(`me/favorites/${track.id}`, '?'), {
+    method: track.user_favorite ? 'delete' : 'put',
+  })
     .then(response => response.json())
     .then(() => {
       if (track.user_favorite) {
@@ -20,7 +22,9 @@ export const like = (track) => (dispatch) => {
         dispatch(mergeFavorites([track.id]));
       }
 
-      const updateEntity = Object.assign({}, track, { user_favorite: !track.user_favorite });
+      const updateEntity = Object.assign({}, track, {
+        user_favorite: !track.user_favorite,
+      });
       dispatch(syncEntities(updateEntity, 'tracks'));
     });
 };

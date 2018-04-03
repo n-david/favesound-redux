@@ -2,7 +2,6 @@ import { FollowersList } from './index';
 import { shallow } from 'enzyme';
 
 describe('FollowersList', () => {
-
   const props = {
     currentUser: { name: 'x' },
     userEntities: { 1: { name: 'x' }, 2: { name: 'y' } },
@@ -11,12 +10,11 @@ describe('FollowersList', () => {
     requestInProcess: false,
     isExpanded: false,
     setToggle: () => {},
-    fetchFollowers: () => {}
+    fetchFollowers: () => {},
   };
 
   it('renders', () => {
-    const element = shallow(<FollowersList { ...props } />);
+    const element = shallow(<FollowersList {...props} />);
     expect(element.find('List')).to.have.length(1);
   });
-
 });

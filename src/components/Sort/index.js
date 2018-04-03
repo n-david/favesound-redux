@@ -14,16 +14,10 @@ function hasActiveSort(activeSort) {
   return activeSort !== sortTypes.NONE;
 }
 
-function Sort({
-  activeSort,
-  onSort,
-}) {
-  const sortIconClass = classNames(
-    'stream-interaction-icon',
-    {
-      'stream-interaction-icon-active': hasActiveSort(activeSort)
-    }
-  );
+function Sort({ activeSort, onSort }) {
+  const sortIconClass = classNames('stream-interaction-icon', {
+    'stream-interaction-icon-active': hasActiveSort(activeSort),
+  });
 
   return (
     <div className="stream-interaction">
@@ -33,17 +27,18 @@ function Sort({
         </ButtonInline>
       </div>
       <div className="stream-interaction-content">
-        {
-          map((value, key) => {
-            return (
-              <span key={key}>
-                <ButtonActive onClick={() => onSort(value)} isActive={value === activeSort}>
-                  {SORT_NAMES[value]}
-                </ButtonActive>
-              </span>
-            );
-          }, sortTypes)
-        }
+        {map((value, key) => {
+          return (
+            <span key={key}>
+              <ButtonActive
+                onClick={() => onSort(value)}
+                isActive={value === activeSort}
+              >
+                {SORT_NAMES[value]}
+              </ButtonActive>
+            </span>
+          );
+        }, sortTypes)}
       </div>
     </div>
   );
@@ -51,19 +46,20 @@ function Sort({
 
 function mapStateToProps(state) {
   return {
-    activeSort: state.sort.sortType
+    activeSort: state.sort.sortType,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSort: (sortType) => bindActionCreators(actions.sortStream, dispatch)(sortType)
+    onSort: sortType =>
+      bindActionCreators(actions.sortStream, dispatch)(sortType),
   };
 }
 
 Sort.propTypes = {
   activeSort: PropTypes.string,
-  onSort: PropTypes.func
+  onSort: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sort);

@@ -11,7 +11,7 @@ import Activities from '../../components/Activities';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { getTracknameFilter } from '../../constants/nameFilter';
 import { getAndCombined, getOrCombined } from '../../services/filter';
-import { getArtistFilter } from "../../constants/artistFilter";
+import { getArtistFilter } from '../../constants/artistFilter';
 
 class Browse extends React.Component {
   constructor(props) {
@@ -39,7 +39,9 @@ class Browse extends React.Component {
   }
 
   componentDidUpdate() {
-    if (!this.needToFetchActivities()) { return; }
+    if (!this.needToFetchActivities()) {
+      return;
+    }
     this.fetchActivitiesByGenre();
   }
 
@@ -62,33 +64,49 @@ class Browse extends React.Component {
   }
 
   render() {
-    const { browseActivities, match, requestsInProcess, trackEntities, activeFilter, activeSort } = this.props;
+    const {
+      browseActivities,
+      match,
+      requestsInProcess,
+      trackEntities,
+      activeFilter,
+      activeSort,
+    } = this.props;
     const genre = match.params.genre;
     return (
       <div className="browse">
         <StreamInteractions />
         <Activities
-          isLoading={requestsInProcess[requestTypes.GENRES] && !browseActivities[genre]}
+          isLoading={
+            requestsInProcess[requestTypes.GENRES] && !browseActivities[genre]
+          }
           ids={browseActivities[genre]}
           entities={trackEntities}
           activeFilter={activeFilter}
           activeSort={activeSort}
           scrollFunction={this.fetchActivitiesByGenre}
         />
-        <LoadingSpinner isLoading={!!(requestsInProcess[requestTypes.GENRES] && browseActivities[genre])} />
+        <LoadingSpinner
+          isLoading={
+            !!(
+              requestsInProcess[requestTypes.GENRES] && browseActivities[genre]
+            )
+          }
+        />
       </div>
     );
   }
-
 }
 
 function mapStateToProps(state) {
-  const queryFilters = [getTracknameFilter(state.filter.filterNameQuery),
-    getArtistFilter(state.filter.filterNameQuery, state.entities.users)];
+  const queryFilters = [
+    getTracknameFilter(state.filter.filterNameQuery),
+    getArtistFilter(state.filter.filterNameQuery, state.entities.users),
+  ];
 
   const filters = [
     DURATION_FILTER_FUNCTIONS[state.filter.durationFilterType],
-    getOrCombined(queryFilters)
+    getOrCombined(queryFilters),
   ];
 
   return {
@@ -105,7 +123,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setSelectedGenre: bindActionCreators(actions.setSelectedGenre, dispatch),
-    fetchActivitiesByGenre: bindActionCreators(actions.fetchActivitiesByGenre, dispatch)
+    fetchActivitiesByGenre: bindActionCreators(
+      actions.fetchActivitiesByGenre,
+      dispatch,
+    ),
   };
 }
 
@@ -115,7 +136,7 @@ Browse.propTypes = {
   paginateLinks: PropTypes.object,
   trackEntities: PropTypes.object,
   userEntities: PropTypes.object,
-  fetchActivitiesByGenre: PropTypes.func
+  fetchActivitiesByGenre: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Browse);

@@ -6,15 +6,18 @@ import { normalizeSamples } from '../../services/track';
 const WAVE_COLOR = '#61B25A';
 
 class WaveformSc extends React.Component {
-
   componentDidMount() {
     const { activity } = this.props;
 
-    if (!activity) { return; }
+    if (!activity) {
+      return;
+    }
 
     const { waveform_url } = activity;
 
-    if (!waveform_url) { return; }
+    if (!waveform_url) {
+      return;
+    }
 
     const waveformUrlJson = waveform_url.replace('.png', '.json');
 
@@ -29,11 +32,11 @@ class WaveformSc extends React.Component {
   fetchJsonWaveform(waveformCanvas, waveformUrl) {
     fetch(waveformUrl)
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         new Waveform({
           container: waveformCanvas,
           innerColor: WAVE_COLOR,
-          data: normalizeSamples(data.samples)
+          data: normalizeSamples(data.samples),
         });
       });
   }
@@ -47,9 +50,15 @@ class WaveformSc extends React.Component {
   // }
 
   render() {
-    return <div className="track-waveform-json" ref={(waveform) => { this.waveformCanvas = waveform; }} />;
+    return (
+      <div
+        className="track-waveform-json"
+        ref={waveform => {
+          this.waveformCanvas = waveform;
+        }}
+      />
+    );
   }
-
 }
 
 WaveformSc.propTypes = {

@@ -12,19 +12,16 @@ import ButtonInline from '../../components/ButtonInline';
 
 function hasActiveFilter(activeDurationFilter) {
   const { FILTER_DURATION_TRACK, FILTER_DURATION_MIX } = filterTypes;
-  return activeDurationFilter === FILTER_DURATION_TRACK || activeDurationFilter === FILTER_DURATION_MIX;
+  return (
+    activeDurationFilter === FILTER_DURATION_TRACK ||
+    activeDurationFilter === FILTER_DURATION_MIX
+  );
 }
 
-function FilterDuration({
-  activeDurationFilter,
-  onDurationFilter,
-}) {
-  const filterDurationIconClass = classNames(
-    'stream-interaction-icon',
-    {
-      'stream-interaction-icon-active': hasActiveFilter(activeDurationFilter)
-    }
-  );
+function FilterDuration({ activeDurationFilter, onDurationFilter }) {
+  const filterDurationIconClass = classNames('stream-interaction-icon', {
+    'stream-interaction-icon-active': hasActiveFilter(activeDurationFilter),
+  });
 
   return (
     <div className="stream-interaction">
@@ -34,17 +31,18 @@ function FilterDuration({
         </ButtonInline>
       </div>
       <div className="stream-interaction-content">
-        {
-          map((value, key) => {
-            return (
-              <span key={key}>
-                <ButtonActive onClick={() => onDurationFilter(value)} isActive={value === activeDurationFilter}>
-                  {DURATION_FILTER_NAMES[value]}
-                </ButtonActive>
-              </span>
-            );
-          }, filterTypes)
-        }
+        {map((value, key) => {
+          return (
+            <span key={key}>
+              <ButtonActive
+                onClick={() => onDurationFilter(value)}
+                isActive={value === activeDurationFilter}
+              >
+                {DURATION_FILTER_NAMES[value]}
+              </ButtonActive>
+            </span>
+          );
+        }, filterTypes)}
       </div>
     </div>
   );
@@ -52,19 +50,20 @@ function FilterDuration({
 
 function mapStateToProps(state) {
   return {
-    activeDurationFilter: state.filter.durationFilterType
+    activeDurationFilter: state.filter.durationFilterType,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onDurationFilter: (filterType) => bindActionCreators(actions.filterDuration, dispatch)(filterType)
+    onDurationFilter: filterType =>
+      bindActionCreators(actions.filterDuration, dispatch)(filterType),
   };
 }
 
 FilterDuration.propTypes = {
   activeDurationFilter: PropTypes.string,
-  onDurationFilter: PropTypes.func
+  onDurationFilter: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterDuration);

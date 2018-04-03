@@ -5,11 +5,11 @@ let user = new Schema('users');
 let comment = new Schema('comments');
 
 track.define({
-  user
+  user,
 });
 
 comment.define({
-    user
+  user,
 });
 
 export const trackSchema = track;

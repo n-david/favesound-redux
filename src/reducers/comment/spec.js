@@ -29,7 +29,11 @@ describe('comment reducer', () => {
       };
       const expectedState = {
         trackId: 15,
-        comments: { 0: 'First', 1: 'Second comment!', 15: ['Third Comment', 'Fourth'] },
+        comments: {
+          0: 'First',
+          1: 'Second comment!',
+          15: ['Third Comment', 'Fourth'],
+        },
       };
       expect(comment(previousState, action)).to.eql(expectedState);
     });

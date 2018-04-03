@@ -16,7 +16,7 @@ function FollowingsList({
   requestInProcess,
   isExpanded,
   onSetToggle,
-  onFetchFollowings
+  onFetchFollowings,
 }) {
   return (
     <List
@@ -45,14 +45,14 @@ function mapStateToProps(state) {
     followings: state.user.followings,
     nextHref,
     requestInProcess,
-    isExpanded
+    isExpanded,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onSetToggle: bindActionCreators(actions.setToggle, dispatch),
-    onFetchFollowings: bindActionCreators(actions.fetchFollowings, dispatch)
+    onFetchFollowings: bindActionCreators(actions.fetchFollowings, dispatch),
   };
 }
 
@@ -64,7 +64,7 @@ FollowingsList.propTypes = {
   paginateLinks: PropTypes.object,
   toggle: PropTypes.object,
   onSetToggle: PropTypes.func,
-  onFetchFollowings: PropTypes.func
+  onFetchFollowings: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FollowingsList);

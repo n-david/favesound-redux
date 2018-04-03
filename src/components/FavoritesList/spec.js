@@ -2,7 +2,6 @@ import { FavoritesList } from './index';
 import { shallow } from 'enzyme';
 
 describe('FavoritesList', () => {
-
   const props = {
     currentUser: { name: 'x' },
     trackEntities: { 1: { name: 'x' }, 2: { name: 'y' } },
@@ -11,12 +10,11 @@ describe('FavoritesList', () => {
     requestInProcess: false,
     isExpanded: false,
     setToggle: () => {},
-    fetchFavorites: () => {}
+    fetchFavorites: () => {},
   };
 
   it('renders', () => {
-    const element = shallow(<FavoritesList { ...props } />);
+    const element = shallow(<FavoritesList {...props} />);
     expect(element.find('List')).to.have.length(1);
   });
-
 });

@@ -3,12 +3,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 function ArtworkAction({ action, isVisible, className, children }) {
-  const overlayClass = classNames(
-    'artwork-action-overlay',
-    {
-      'artwork-action-overlay-visible': isVisible
-    }
-  );
+  const overlayClass = classNames('artwork-action-overlay', {
+    'artwork-action-overlay-visible': isVisible,
+  });
 
   return (
     <div className="artwork-action">

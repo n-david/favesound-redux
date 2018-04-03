@@ -12,7 +12,7 @@ import {
   SET_TOGGLED,
   RESET_TOGGLED,
   SET_REQUEST_IN_PROCESS,
-  SYNC_ENTITIES
+  SYNC_ENTITIES,
 } from '../constants/actionTypes';
 
 const blacklist = [
@@ -26,18 +26,17 @@ const blacklist = [
   SET_TOGGLED,
   RESET_TOGGLED,
   SET_REQUEST_IN_PROCESS,
-  SYNC_ENTITIES
+  SYNC_ENTITIES,
 ];
 
 export default mixpanel({
-
-  ignoreAction: (action) => {
+  ignoreAction: action => {
     return blacklist.indexOf(action.type) > -1;
   },
 
   token: 'b36e27047a8724f0977edc36dbf8477d',
 
-  selectEventName: (action) => action.type,
+  selectEventName: action => action.type,
 
   selectDistinctId: (action, state) => {
     if (state.session && state.session.user && state.session.user.permalink) {
@@ -61,13 +60,13 @@ export default mixpanel({
     if (user) {
       return generateUserData(user);
     }
-  }
+  },
 });
 
 function generateUserData(user) {
   return {
     $permalink: user.permalink,
     $permalink_url: user.permalink_url,
-    $username: user.username
+    $username: user.username,
   };
 }

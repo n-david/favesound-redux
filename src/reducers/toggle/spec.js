@@ -7,7 +7,7 @@ describe('toggle reducer', () => {
       const TOGGLE_TYPE = 'FOO_TOGGLE';
       const action = actionCreators.setToggle(TOGGLE_TYPE);
       const expectedState = {
-        [TOGGLE_TYPE]: true
+        [TOGGLE_TYPE]: true,
       };
       expect(toggle(undefined, action)).to.eql(expectedState);
     });
@@ -16,10 +16,10 @@ describe('toggle reducer', () => {
       const TOGGLE_TYPE = 'FOO_TOGGLE';
       const action = actionCreators.setToggle(TOGGLE_TYPE);
       const previousState = {
-        [TOGGLE_TYPE]: true
+        [TOGGLE_TYPE]: true,
       };
       const expectedState = {
-        [TOGGLE_TYPE]: false
+        [TOGGLE_TYPE]: false,
       };
       expect(toggle(previousState, action)).to.eql(expectedState);
     });
@@ -29,10 +29,10 @@ describe('toggle reducer', () => {
       const TOGGLE_TYPE = 'FOO_TOGGLE';
       const action = actionCreators.setToggle(TOGGLE_TYPE);
       const previousState = {
-        [TOGGLE_TYPE]: true
+        [TOGGLE_TYPE]: true,
       };
       const expectedState = {
-        [TOGGLE_TYPE]: false
+        [TOGGLE_TYPE]: false,
       };
       expect(toggle(previousState, action)).to.eql(expectedState);
     });

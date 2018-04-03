@@ -22,5 +22,5 @@ export default combineReducers({
   toggle,
   comment,
   filter,
-  sort
+  sort,
 });

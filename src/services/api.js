@@ -8,7 +8,8 @@ export function unauthApiUrl(url, symbol) {
 export function apiUrl(url, symbol) {
   const accessToken = Cookies.get('accessToken');
 
-  if (!accessToken) { // Fallback
+  if (!accessToken) {
+    // Fallback
     return unauthApiUrl(url, symbol);
   }
 

@@ -8,28 +8,28 @@ import { isSameTrackAndPlaying, isSameTrack } from '../../services/player';
 export function setActiveTrack(activeTrackId) {
   return {
     type: actionTypes.SET_ACTIVE_TRACK,
-    activeTrackId
+    activeTrackId,
   };
 }
 
 export function setIsPlaying(isPlaying) {
   return {
     type: actionTypes.SET_IS_PLAYING,
-    isPlaying
+    isPlaying,
   };
 }
 
 export function setTrackInPlaylist(trackId) {
   return {
     type: actionTypes.SET_TRACK_IN_PLAYLIST,
-    trackId
+    trackId,
   };
 }
 
 export function removeFromPlaylist(trackId) {
   return {
     type: actionTypes.REMOVE_TRACK_FROM_PLAYLIST,
-    trackId
+    trackId,
   };
 }
 
@@ -60,11 +60,11 @@ export function setIsInRepeatMode() {
 export function setTrackVolume(volume) {
   return {
     type: actionTypes.SET_VOLUME,
-    volume
+    volume,
   };
 }
 
-export const clearPlaylist = () => (dispatch) => {
+export const clearPlaylist = () => dispatch => {
   dispatch(emptyPlaylist());
   dispatch(deactivateTrack());
   dispatch(togglePlayTrack(false));
@@ -76,15 +76,19 @@ function isInPlaylist(playlist, trackId) {
   return find(isSameTrack(trackId), playlist);
 }
 
-export const togglePlayTrack = (isPlaying) => (dispatch) => {
+export const togglePlayTrack = isPlaying => dispatch => {
   dispatch(setIsPlaying(isPlaying));
 };
 
-export const activateTrack = (trackId) => (dispatch, getState) => {
+export const activateTrack = trackId => (dispatch, getState) => {
   const playlist = getState().player.playlist;
   const previousActiveTrackId = getState().player.activeTrackId;
   const isCurrentlyPlaying = getState().player.isPlaying;
-  const isPlaying = !isSameTrackAndPlaying(previousActiveTrackId, trackId, isCurrentlyPlaying);
+  const isPlaying = !isSameTrackAndPlaying(
+    previousActiveTrackId,
+    trackId,
+    isCurrentlyPlaying,
+  );
 
   dispatch(togglePlayTrack(isPlaying));
   dispatch(setActiveTrack(trackId));
@@ -94,7 +98,7 @@ export const activateTrack = (trackId) => (dispatch, getState) => {
   }
 };
 
-export const addTrackToPlaylist = (track) => (dispatch, getState) => {
+export const addTrackToPlaylist = track => (dispatch, getState) => {
   const playlist = getState().player.playlist;
 
   if (!isInPlaylist(playlist, track.id)) {
@@ -126,9 +130,16 @@ function getRandomTrack(playlist, currentActiveTrackId) {
   return playlist[getRandomIndex()];
 }
 
-export const activateIteratedPlaylistTrack = (currentActiveTrackId, iterate) => (dispatch, getState) => {
+export const activateIteratedPlaylistTrack = (
+  currentActiveTrackId,
+  iterate,
+) => (dispatch, getState) => {
   const playlist = getState().player.playlist;
-  const nextActiveTrackId = getIteratedTrack(playlist, currentActiveTrackId, iterate);
+  const nextActiveTrackId = getIteratedTrack(
+    playlist,
+    currentActiveTrackId,
+    iterate,
+  );
   const isInShuffleMode = getState().player.isInShuffleMode;
 
   if (nextActiveTrackId && isInShuffleMode === false) {
@@ -143,7 +154,10 @@ function dispatchRandomTrack(playlist, currentActiveTrackId, dispatch) {
   dispatch(activateTrack(randomActiveTrackId));
 }
 
-export const activateIteratedStreamTrack = (currentActiveTrackId, iterate) => (dispatch, getState) => {
+export const activateIteratedStreamTrack = (currentActiveTrackId, iterate) => (
+  dispatch,
+  getState,
+) => {
   const isInShuffleMode = getState().player.isInShuffleMode;
   const playlist = getState().player.playlist;
 
@@ -152,7 +166,12 @@ export const activateIteratedStreamTrack = (currentActiveTrackId, iterate) => (d
   if (isInShuffleMode) {
     dispatchRandomTrack(streamList, currentActiveTrackId, dispatch);
   } else {
-    const nextStreamTrackId = findNextStreamTrackId(streamList, playlist, currentActiveTrackId, iterate);
+    const nextStreamTrackId = findNextStreamTrackId(
+      streamList,
+      playlist,
+      currentActiveTrackId,
+      iterate,
+    );
     if (nextStreamTrackId) {
       dispatch(activateTrack(nextStreamTrackId));
     } else {
@@ -169,18 +188,35 @@ function getStreamList(getState) {
   return getState().user.activities;
 }
 
-function findNextStreamTrackId(streamList, playlist, currentActiveTrackId, iterate) {
-  let nextStreamTrackId = getIteratedTrack(streamList, currentActiveTrackId, iterate);
+function findNextStreamTrackId(
+  streamList,
+  playlist,
+  currentActiveTrackId,
+  iterate,
+) {
+  let nextStreamTrackId = getIteratedTrack(
+    streamList,
+    currentActiveTrackId,
+    iterate,
+  );
   while (playlist.includes(nextStreamTrackId)) {
-    nextStreamTrackId = getIteratedTrack(streamList, nextStreamTrackId, iterate);
+    nextStreamTrackId = getIteratedTrack(
+      streamList,
+      nextStreamTrackId,
+      iterate,
+    );
   }
   return nextStreamTrackId;
 }
 
-export const removeTrackFromPlaylist = (track) => (dispatch, getState) => {
+export const removeTrackFromPlaylist = track => (dispatch, getState) => {
   const activeTrackId = getState().player.activeTrackId;
   const isPlaying = getState().player.isPlaying;
-  const isRelevantTrack = isSameTrackAndPlaying(activeTrackId, track.id, isPlaying);
+  const isRelevantTrack = isSameTrackAndPlaying(
+    activeTrackId,
+    track.id,
+    isPlaying,
+  );
 
   if (isRelevantTrack) {
     dispatch(activateIteratedPlaylistTrack(activeTrackId, 1));
@@ -197,15 +233,14 @@ export const removeTrackFromPlaylist = (track) => (dispatch, getState) => {
   dispatch(removeFromPlaylist(track.id));
 };
 
-export const toggleShuffleMode = (isInShuffleMode) => (dispatch) => {
+export const toggleShuffleMode = isInShuffleMode => dispatch => {
   dispatch(setIsInShuffleMode(isInShuffleMode));
 };
 
-export const toggleRepeatMode = (isInRepeatMode) => (dispatch) => {
+export const toggleRepeatMode = isInRepeatMode => dispatch => {
   dispatch(setIsInRepeatMode(isInRepeatMode));
 };
 
-
-export const changeVolume = (volume) => (dispatch) => {
+export const changeVolume = volume => dispatch => {
   dispatch(setTrackVolume(volume));
 };

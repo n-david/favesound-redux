@@ -15,12 +15,9 @@ function Action({ actionItem }) {
 }
 
 function Actions({ configuration, isVisible }) {
-  const actionsClass = classNames(
-    'action',
-    {
-      'action-visible': isVisible
-    }
-  );
+  const actionsClass = classNames('action', {
+    'action-visible': isVisible,
+  });
 
   return (
     <div className={actionsClass}>
@@ -33,7 +30,7 @@ function Actions({ configuration, isVisible }) {
 
 Actions.propTypes = {
   configuration: PropTypes.array,
-  isVisible: PropTypes.bool
+  isVisible: PropTypes.bool,
 };
 
 export default Actions;

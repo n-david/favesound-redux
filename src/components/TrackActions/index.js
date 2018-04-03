@@ -25,7 +25,7 @@ function TrackActions({ onOpenComments, onAddTrackToPlaylist }) {
 
 function mapStateToProps(state, props) {
   return {
-    activity: props.activity
+    activity: props.activity,
   };
 }
 
@@ -33,8 +33,10 @@ function mapDispatchToProps(dispatch, props) {
   const { activity } = props;
 
   return {
-    onOpenComments: () => bindActionCreators(actions.openComments, dispatch)(activity.id),
-    onAddTrackToPlaylist: () => bindActionCreators(actions.addTrackToPlaylist, dispatch)(activity),
+    onOpenComments: () =>
+      bindActionCreators(actions.openComments, dispatch)(activity.id),
+    onAddTrackToPlaylist: () =>
+      bindActionCreators(actions.addTrackToPlaylist, dispatch)(activity),
   };
 }
 

@@ -4,6 +4,4 @@ function getCommentProperty(commentId) {
   return `${commentId}/${requestTypes.COMMENTS}`;
 }
 
-export {
-  getCommentProperty
-};
+export { getCommentProperty };

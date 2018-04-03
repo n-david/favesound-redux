@@ -12,7 +12,7 @@ function Permalink({ link, text, title }) {
 Permalink.propTypes = {
   link: PropTypes.string,
   text: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 export default Permalink;

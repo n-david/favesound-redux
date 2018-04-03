@@ -22,32 +22,24 @@ function VolumeSlider({ volume, onChangeVolume }) {
 }
 
 function Volume({ toggle, volume, onChangeVolume }) {
-  const volumeClass = classNames(
-    'volume',
-    {
-      'volume-visible': toggle[toggleTypes.VOLUME]
-    }
-  );
+  const volumeClass = classNames('volume', {
+    'volume-visible': toggle[toggleTypes.VOLUME],
+  });
 
   const isMuted = !volume;
 
-  const onMute = isMuted ?
-    () => onChangeVolume(70) :
-    () => onChangeVolume(0);
+  const onMute = isMuted ? () => onChangeVolume(70) : () => onChangeVolume(0);
 
-  const muteClass = classNames(
-  'fa',
-    {
-      'fa-volume-up': !isMuted,
-      'fa-volume-off': isMuted,
-    }
-  );
+  const muteClass = classNames('fa', {
+    'fa-volume-up': !isMuted,
+    'fa-volume-off': isMuted,
+  });
 
   return (
     <div className={volumeClass}>
       <div>
         <h2 className="volume-number">{volume}</h2>
-        <VolumeSlider volume={volume} onChangeVolume={onChangeVolume}/>
+        <VolumeSlider volume={volume} onChangeVolume={onChangeVolume} />
         <div className="volume-muter">
           <ButtonInline onClick={onMute}>
             <i className={muteClass} />
@@ -74,7 +66,7 @@ function mapDispatchToProps(dispatch) {
 Volume.propTypes = {
   onChangeVolume: PropTypes.func,
   volume: PropTypes.number,
-  toggle: PropTypes.object
+  toggle: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Volume);

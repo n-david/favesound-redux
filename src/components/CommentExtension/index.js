@@ -16,7 +16,7 @@ function CommentExtension({
   userEntities,
   requestInProcess,
   nextHref,
-  onFetchComments
+  onFetchComments,
 }) {
   const moreButtonProps = {
     onClick: () => onFetchComments(activity.id, nextHref),
@@ -37,14 +37,12 @@ function CommentExtension({
                 <span>{user.username}</span>
                 <span>{fromNow(comment.created_at)}</span>
               </div>
-              <div>
-                {comment.body}
-              </div>
+              <div>{comment.body}</div>
             </div>
           </div>
         );
       }, commentIds)}
-      <ButtonMore { ...moreButtonProps } />
+      <ButtonMore {...moreButtonProps} />
     </div>
   );
 }

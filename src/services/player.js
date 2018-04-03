@@ -15,7 +15,7 @@ export function formatSeconds(num) {
     return `${minutes}:${seconds}`;
   } else {
     const hours = padZero(Math.floor(num / 3600), 2);
-    const minutes = padZero(Math.floor((num - (hours * 3600)) / 60), 2);
+    const minutes = padZero(Math.floor((num - hours * 3600) / 60), 2);
     const seconds = padZero(num % 60, 2);
     return `${hours}:${minutes}:${seconds}`;
   }

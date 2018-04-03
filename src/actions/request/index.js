@@ -4,6 +4,6 @@ export function setRequestInProcess(inProcess, requestType) {
   return {
     type: actionTypes.SET_REQUEST_IN_PROCESS,
     requestType,
-    inProcess
+    inProcess,
   };
 }

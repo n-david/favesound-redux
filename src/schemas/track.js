@@ -4,7 +4,7 @@ import userSchema from './user';
 const trackSchema = new Schema('tracks');
 
 trackSchema.define({
-  user: userSchema
+  user: userSchema,
 });
 
 export default trackSchema;

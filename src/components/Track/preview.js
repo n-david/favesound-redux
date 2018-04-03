@@ -5,7 +5,7 @@ import Permalink from '../../components/Permalink';
 import InfoList from '../../components/InfoList';
 import Actions from '../../components/HoverActions';
 import { isSameTrackAndPlaying, isSameTrack } from '../../services/player';
-import { COMMENTS, LIKES, PLAYBACK } from "../../constants/trackAttributes";
+import { COMMENTS, LIKES, PLAYBACK } from '../../constants/trackAttributes';
 
 function TrackPreview({
   activity,
@@ -13,13 +13,23 @@ function TrackPreview({
   activeTrackId,
   userEntities,
   onActivateTrack,
-  onAddTrackToPlaylist
+  onAddTrackToPlaylist,
 }) {
   const { avatar_url, username } = userEntities[activity.user];
-  const { playback_count, favoritings_count, comment_count, permalink_url, artwork_url } = activity;
+  const {
+    playback_count,
+    favoritings_count,
+    comment_count,
+    permalink_url,
+    artwork_url,
+  } = activity;
 
   const isVisible = isSameTrack(activeTrackId)(activity.id);
-  const trackIsPlaying = isSameTrackAndPlaying(activeTrackId, activity.id, isPlaying);
+  const trackIsPlaying = isSameTrackAndPlaying(
+    activeTrackId,
+    activity.id,
+    isPlaying,
+  );
 
   const configuration = [
     {
@@ -28,35 +38,43 @@ function TrackPreview({
     },
     {
       className: 'fa fa-th-list',
-      fn: () => onAddTrackToPlaylist(activity)
-    }
+      fn: () => onAddTrackToPlaylist(activity),
+    },
   ];
 
   const information = [
     {
       className: 'fa fa-play',
       count: playback_count,
-      title: PLAYBACK
+      title: PLAYBACK,
     },
     {
       className: 'fa fa-heart',
       count: favoritings_count,
-      title: LIKES
+      title: LIKES,
     },
     {
       className: 'fa fa-comment',
       count: comment_count,
-      title: COMMENTS
-    }
+      title: COMMENTS,
+    },
   ];
 
   return (
     <div className="item">
       <div>
-        <Artwork image={artwork_url} title={activity.title} optionalImage={avatar_url} size={40} />
+        <Artwork
+          image={artwork_url}
+          title={activity.title}
+          optionalImage={avatar_url}
+          size={40}
+        />
       </div>
       <div className="item-content">
-        <Permalink link={permalink_url} text={username + ' - ' + activity.title} />
+        <Permalink
+          link={permalink_url}
+          text={username + ' - ' + activity.title}
+        />
         <InfoList information={information} />
         <Actions configuration={configuration} isVisible={isVisible} />
       </div>
@@ -70,9 +88,7 @@ TrackPreview.propTypes = {
   isPlaying: PropTypes.bool,
   activeTrackId: PropTypes.number,
   onActivateTrack: PropTypes.func,
-  onAddTrackToPlaylist: PropTypes.func
+  onAddTrackToPlaylist: PropTypes.func,
 };
 
-export {
-  TrackPreview
-};
+export { TrackPreview };

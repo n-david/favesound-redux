@@ -9,12 +9,12 @@ describe('sort', () => {
       const previousState = {
         isPlaying: true,
         volume: 11,
-        sortType: null
+        sortType: null,
       };
       const expectedState = {
         isPlaying: true,
         volume: 11,
-        sortType: 'SORT_FAVORITES'
+        sortType: 'SORT_FAVORITES',
       };
       expect(sort(previousState, action)).to.eql(expectedState);
     });
@@ -24,12 +24,12 @@ describe('sort', () => {
       const previousState = {
         isPlaying: true,
         volume: 11,
-        sortType: 'SORT_PLAYS'
+        sortType: 'SORT_PLAYS',
       };
       const expectedState = {
         isPlaying: true,
         volume: 11,
-        sortType: 'SORT_FAVORITES'
+        sortType: 'SORT_FAVORITES',
       };
       expect(sort(previousState, action)).to.eql(expectedState);
     });

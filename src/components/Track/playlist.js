@@ -11,15 +11,21 @@ function TrackPlaylist({
   activeTrackId,
   isPlaying,
   onActivateTrack,
-  onRemoveTrackFromPlaylist
+  onRemoveTrackFromPlaylist,
 }) {
-  if (!activity) { return null; }
+  if (!activity) {
+    return null;
+  }
 
   const { user, title, permalink_url, artwork_url } = activity;
   const { avatar_url, username } = userEntities[user];
   const userPermalinkUrl = userEntities[user].permalink_url;
 
-  const trackIsPlaying = isSameTrackAndPlaying(activeTrackId, activity.id, isPlaying);
+  const trackIsPlaying = isSameTrackAndPlaying(
+    activeTrackId,
+    activity.id,
+    isPlaying,
+  );
   const isVisible = isSameTrack(activeTrackId)(activity.id);
 
   const configuration = [
@@ -29,18 +35,27 @@ function TrackPlaylist({
     },
     {
       className: 'fa fa-times',
-      fn: () => onRemoveTrackFromPlaylist(activity)
-    }
+      fn: () => onRemoveTrackFromPlaylist(activity),
+    },
   ];
 
   return (
     <div className="playlist-track">
       <div>
-        <Artwork image={artwork_url} title={title} optionalImage={avatar_url} size={40} />
+        <Artwork
+          image={artwork_url}
+          title={title}
+          optionalImage={avatar_url}
+          size={40}
+        />
       </div>
       <div className="playlist-track-content">
-        <Permalink link={permalink_url} text={title} title={title}/>
-        <Permalink link={userPermalinkUrl} text={'by: ' + username} title={username}/>
+        <Permalink link={permalink_url} text={title} title={title} />
+        <Permalink
+          link={userPermalinkUrl}
+          text={'by: ' + username}
+          title={username}
+        />
         <Actions configuration={configuration} isVisible={isVisible} />
       </div>
     </div>
@@ -53,9 +68,7 @@ TrackPlaylist.propTypes = {
   isPlaying: PropTypes.bool,
   activeTrackId: PropTypes.number,
   onActivateTrack: PropTypes.func,
-  onRemoveTrackFromPlaylist: PropTypes.func
+  onRemoveTrackFromPlaylist: PropTypes.func,
 };
 
-export {
-  TrackPlaylist
-};
+export { TrackPlaylist };

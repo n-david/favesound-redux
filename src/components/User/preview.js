@@ -7,28 +7,37 @@ import Artwork from '../../components/Artwork';
 import Permalink from '../../components/Permalink';
 
 function UserPreview({ user, followings, onFollow }) {
-  const { followings_count, followers_count, track_count, avatar_url, username, permalink_url } = user;
+  const {
+    followings_count,
+    followers_count,
+    track_count,
+    avatar_url,
+    username,
+    permalink_url,
+  } = user;
 
   const configuration = [
     {
-      className: find((following) => following === user.id, followings) ? 'fa fa-group is-active' : 'fa fa-group',
-      fn: () => onFollow(user)
-    }
+      className: find(following => following === user.id, followings)
+        ? 'fa fa-group is-active'
+        : 'fa fa-group',
+      fn: () => onFollow(user),
+    },
   ];
 
   const information = [
     {
       className: 'fa fa-plus',
-      count: followings_count
+      count: followings_count,
     },
     {
       className: 'fa fa-group',
-      count: followers_count
+      count: followers_count,
     },
     {
       className: 'fa fa-music',
-      count: track_count
-    }
+      count: track_count,
+    },
   ];
 
   return (
@@ -48,9 +57,7 @@ function UserPreview({ user, followings, onFollow }) {
 UserPreview.propTypes = {
   followings: PropTypes.array,
   user: PropTypes.object,
-  onFollow: PropTypes.func
+  onFollow: PropTypes.func,
 };
 
-export {
-  UserPreview
-};
+export { UserPreview };

@@ -1,7 +1,7 @@
 import * as actionTypes from '../../constants/actionTypes';
 
 const initialState = {
-  selectedGenre: null
+  selectedGenre: null,
 };
 
 export default function(state = initialState, action) {
@@ -18,10 +18,7 @@ export default function(state = initialState, action) {
 function mergeActivities(state, list, genre) {
   const oldList = state[genre] || [];
 
-  const newList = [
-    ...oldList,
-    ...list
-  ];
+  const newList = [...oldList, ...list];
 
   const obj = {};
   obj[genre] = newList;
@@ -31,7 +28,7 @@ function mergeActivities(state, list, genre) {
 
 function setSelectedGenre(state, genre) {
   const obj = {
-    selectedGenre: genre
+    selectedGenre: genre,
   };
 
   return Object.assign({}, state, obj);

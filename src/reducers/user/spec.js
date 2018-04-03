@@ -13,14 +13,14 @@ describe('user reducer', () => {
         followings: [4, 1, 2, 3],
         activities: [],
         followers: [],
-        favorites: []
+        favorites: [],
       };
 
       const previousState = {
         followings: [4],
         activities: [],
         followers: [],
-        favorites: []
+        favorites: [],
       };
 
       expect(user(previousState, action)).to.eql(expectedState);
@@ -35,14 +35,14 @@ describe('user reducer', () => {
         followings: [1, 3],
         activities: [],
         followers: [],
-        favorites: []
+        favorites: [],
       };
 
       const previousState = {
         followings: [1, 2, 3],
         activities: [],
         followers: [],
-        favorites: []
+        favorites: [],
       };
 
       expect(user(previousState, action)).to.eql(expectedState);
@@ -56,14 +56,14 @@ describe('user reducer', () => {
         followings: [],
         activities: ['baz', 'foo', 'bar'],
         followers: [],
-        favorites: []
+        favorites: [],
       };
 
       const previousState = {
         followings: [],
         activities: ['baz'],
         followers: [],
-        favorites: []
+        favorites: [],
       };
       expect(user(previousState, action)).to.eql(expectedState);
     });
@@ -76,14 +76,14 @@ describe('user reducer', () => {
         followings: [],
         activities: [],
         followers: ['Kyrie', 'Jack', 'Jill', 'Lebron'],
-        favorites: []
+        favorites: [],
       };
 
       const previousState = {
         followings: [],
         activities: [],
         followers: ['Kyrie'],
-        favorites: []
+        favorites: [],
       };
       expect(user(previousState, action)).to.eql(expectedState);
     });
@@ -96,14 +96,14 @@ describe('user reducer', () => {
         followings: [],
         activities: [],
         followers: [],
-        favorites: ['Kyrie', 'Jack', 'Jill', 'Lebron']
+        favorites: ['Kyrie', 'Jack', 'Jill', 'Lebron'],
       };
 
       const previousState = {
         followings: [],
         activities: [],
         followers: [],
-        favorites: ['Kyrie']
+        favorites: ['Kyrie'],
       };
       expect(user(previousState, action)).to.eql(expectedState);
     });
@@ -117,7 +117,7 @@ describe('user reducer', () => {
         followers: [],
         favorites: ['FOO'],
         typeReposts: {},
-        typeTracks: { 0: 'Bar' }
+        typeTracks: { 0: 'Bar' },
       };
       const expectedState = {
         followings: [],
@@ -125,7 +125,7 @@ describe('user reducer', () => {
         followers: [],
         favorites: [],
         typeReposts: {},
-        typeTracks: {}
+        typeTracks: {},
       };
       expect(user(previousState, action)).to.eql(expectedState);
     });

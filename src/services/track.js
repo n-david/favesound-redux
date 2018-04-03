@@ -3,7 +3,12 @@ import * as trackTypes from '../constants/trackTypes';
 
 export function isTrack(track) {
   const { origin, type } = track;
-  return origin && type && type !== trackTypes.PLAYLIST && type !== trackTypes.PLAYLIST_REPOST;
+  return (
+    origin &&
+    type &&
+    type !== trackTypes.PLAYLIST &&
+    type !== trackTypes.PLAYLIST_REPOST
+  );
 }
 
 export function toIdAndType(o) {
@@ -37,9 +42,12 @@ export function isPngWaveform(waveformUrl) {
 export function durationFormat(ms) {
   const duration = moment.duration(ms);
   if (duration.asHours() > 1) {
-    return Math.floor(duration.asHours()) + moment.utc(duration.asMilliseconds()).format(":mm:ss");
+    return (
+      Math.floor(duration.asHours()) +
+      moment.utc(duration.asMilliseconds()).format(':mm:ss')
+    );
   } else {
-    return moment.utc(duration.asMilliseconds()).format("mm:ss");
+    return moment.utc(duration.asMilliseconds()).format('mm:ss');
   }
 }
 

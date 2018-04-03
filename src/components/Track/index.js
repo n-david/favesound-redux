@@ -24,17 +24,25 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch) {
   return {
     onActivateTrack: bindActionCreators(actions.activateTrack, dispatch),
-    onAddTrackToPlaylist: bindActionCreators(actions.addTrackToPlaylist, dispatch),
-    onRemoveTrackFromPlaylist: bindActionCreators(actions.removeTrackFromPlaylist, dispatch),
+    onAddTrackToPlaylist: bindActionCreators(
+      actions.addTrackToPlaylist,
+      dispatch,
+    ),
+    onRemoveTrackFromPlaylist: bindActionCreators(
+      actions.removeTrackFromPlaylist,
+      dispatch,
+    ),
   };
 }
 
-const TrackPlaylistContainer = connect(mapStateToProps, mapDispatchToProps)(TrackPlaylist);
-const TrackPreviewContainer = connect(mapStateToProps, mapDispatchToProps)(TrackPreview);
-const TrackStreamContainer = connect(mapStateToProps, mapDispatchToProps)(TrackStream);
+const TrackPlaylistContainer = connect(mapStateToProps, mapDispatchToProps)(
+  TrackPlaylist,
+);
+const TrackPreviewContainer = connect(mapStateToProps, mapDispatchToProps)(
+  TrackPreview,
+);
+const TrackStreamContainer = connect(mapStateToProps, mapDispatchToProps)(
+  TrackStream,
+);
 
-export {
-  TrackPlaylistContainer,
-  TrackPreviewContainer,
-  TrackStreamContainer,
-};
+export { TrackPlaylistContainer, TrackPreviewContainer, TrackStreamContainer };

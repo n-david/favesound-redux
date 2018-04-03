@@ -6,15 +6,17 @@ import { mergeFollowings } from '../../actions/user';
 export function removeFromFollowings(userId) {
   return {
     type: actionTypes.REMOVE_FROM_FOLLOWINGS,
-    userId
+    userId,
   };
 }
 
-export const follow = (user) => (dispatch, getState) => {
+export const follow = user => (dispatch, getState) => {
   const followings = getState().user.followings;
-  const isFollowing = find(followings, (following) => following === user.id);
+  const isFollowing = find(followings, following => following === user.id);
 
-  fetch(apiUrl(`me/followings/${user.id}`, '?'), { method: isFollowing ? 'delete' : 'put' })
+  fetch(apiUrl(`me/followings/${user.id}`, '?'), {
+    method: isFollowing ? 'delete' : 'put',
+  })
     .then(response => response.json())
     .then(() => {
       if (isFollowing) {

@@ -8,13 +8,10 @@ import ButtonMore from '../../components/ButtonMore';
 import ButtonInline from '../../components/ButtonInline';
 
 function Chevron({ ids, isExpanded }) {
-  const chevronClass = classNames(
-    'fa',
-    {
-      'fa-chevron-up': isExpanded,
-      'fa-chevron-down': !isExpanded
-    }
-  );
+  const chevronClass = classNames('fa', {
+    'fa-chevron-up': isExpanded,
+    'fa-chevron-down': !isExpanded,
+  });
 
   return ids.length > 4 ? <i className={chevronClass} /> : null;
 }
@@ -42,7 +39,7 @@ function SpecificList({ ids, kind, entities }) {
         <ul>
           {map((id, key) => {
             const userProps = { userId: id, entities };
-            return <SpecificItemUser key={key} { ...userProps } />;
+            return <SpecificItemUser key={key} {...userProps} />;
           }, ids)}
         </ul>
       </div>
@@ -55,7 +52,7 @@ function SpecificList({ ids, kind, entities }) {
         <ul>
           {map((id, key) => {
             const trackProps = { trackId: id, entities };
-            return <SpecificItemTrack key={key} { ...trackProps } />;
+            return <SpecificItemTrack key={key} {...trackProps} />;
           }, ids)}
         </ul>
       </div>
@@ -72,10 +69,10 @@ function List({
   entities,
   onToggleMore,
   nextHref,
-  onFetchMore
+  onFetchMore,
 }) {
   const listClass = classNames({
-    'more-visible': isExpanded
+    'more-visible': isExpanded,
   });
 
   return (
@@ -86,11 +83,7 @@ function List({
         </ButtonInline>
       </h2>
       <div className={listClass}>
-        <SpecificList
-          ids={ids}
-          kind={kind}
-          entities={entities}
-        />
+        <SpecificList ids={ids} kind={kind} entities={entities} />
         <ButtonMore
           nextHref={nextHref}
           onClick={onFetchMore}
@@ -111,11 +104,8 @@ List.propTypes = {
   entities: PropTypes.object,
   nextHref: PropTypes.string,
   onToggleMore: PropTypes.func,
-  onFetchMore: PropTypes.func
+  onFetchMore: PropTypes.func,
 };
 
 export default List;
-export {
-  SpecificList,
-  Chevron,
-};
+export { SpecificList, Chevron };

@@ -18,7 +18,11 @@ export default function(state = initialState, action) {
 function openComments(state, action) {
   const { trackId } = action;
   return {
-    ...state, openComments: { ...state.openComments || [], [trackId]: !state.openComments[trackId] }
+    ...state,
+    openComments: {
+      ...(state.openComments || []),
+      [trackId]: !state.openComments[trackId],
+    },
   };
 }
 
@@ -26,6 +30,9 @@ function mergeComments(state, action) {
   const { comments, trackId } = action;
   return {
     ...state,
-    comments: { ...state.comments || [], [trackId]: [...state.comments[trackId] || [], ...comments] }
+    comments: {
+      ...(state.comments || []),
+      [trackId]: [...(state.comments[trackId] || []), ...comments],
+    },
   };
 }

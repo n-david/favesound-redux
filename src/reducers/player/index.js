@@ -6,7 +6,7 @@ const initialState = {
   isInRepeatMode: false,
   activeTrackId: null,
   isPlaying: false,
-  playlist: []
+  playlist: [],
 };
 
 export default function(state = initialState, action) {
@@ -57,7 +57,7 @@ function removeTrackFromPlaylist(state, trackId) {
   const index = state.playlist.indexOf(trackId);
   const playlist = [
     ...state.playlist.slice(0, index),
-    ...state.playlist.slice(index + 1)
+    ...state.playlist.slice(index + 1),
   ];
   return { ...state, playlist };
 }

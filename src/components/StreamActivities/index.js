@@ -40,12 +40,14 @@ function StreamActivities({
 }
 
 function mapStateToProps(state) {
-  const queryFilters = [getTracknameFilter(state.filter.filterNameQuery),
-    getArtistFilter(state.filter.filterNameQuery, state.entities.users)];
+  const queryFilters = [
+    getTracknameFilter(state.filter.filterNameQuery),
+    getArtistFilter(state.filter.filterNameQuery, state.entities.users),
+  ];
 
   const filters = [
     DURATION_FILTER_FUNCTIONS[state.filter.durationFilterType],
-    getOrCombined(queryFilters)
+    getOrCombined(queryFilters),
   ];
 
   return {
@@ -60,7 +62,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onFetchActivities: bindActionCreators(actions.fetchActivities, dispatch)
+    onFetchActivities: bindActionCreators(actions.fetchActivities, dispatch),
   };
 }
 

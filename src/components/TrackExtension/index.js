@@ -13,7 +13,7 @@ function mapStateToProps(state, props) {
   const { activity } = props;
   return {
     activity,
-    isOpenComment: state.comment.openComments[activity.id]
+    isOpenComment: state.comment.openComments[activity.id],
   };
 }
 

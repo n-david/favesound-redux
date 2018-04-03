@@ -10,7 +10,7 @@ import { mergeEntities } from '../../actions/entities';
 export function setSelectedGenre(genre) {
   return {
     type: actionTypes.SET_SELECTED_GENRE,
-    genre
+    genre,
   };
 }
 
@@ -18,17 +18,25 @@ function mergeActivitiesByGenre(activities, genre) {
   return {
     type: actionTypes.MERGE_GENRE_ACTIVITIES,
     activities,
-    genre
+    genre,
   };
 }
 
-export const fetchActivitiesByGenre = (nextHref, genre) => (dispatch, getState) => {
+export const fetchActivitiesByGenre = (nextHref, genre) => (
+  dispatch,
+  getState,
+) => {
   const requestType = requestTypes.GENRES;
-  const initHref = unauthApiUrl(`tracks?linked_partitioning=1&limit=20&offset=0&tags=${genre}`, '&');
+  const initHref = unauthApiUrl(
+    `tracks?linked_partitioning=1&limit=20&offset=0&tags=${genre}`,
+    '&',
+  );
   const url = nextHref || initHref;
   const requestInProcess = getState().request[requestType];
 
-  if (requestInProcess) { return; }
+  if (requestInProcess) {
+    return;
+  }
 
   dispatch(setRequestInProcess(true, requestType));
 

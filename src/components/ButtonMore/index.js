@@ -5,11 +5,9 @@ import ButtonGhost from '../../components/ButtonGhost';
 function ButtonMore({ onClick, nextHref, isHidden }) {
   return (
     <div className="button-more">
-      {
-        !nextHref || isHidden ?
-        null :
+      {!nextHref || isHidden ? null : (
         <ButtonGhost onClick={onClick}>More</ButtonGhost>
-      }
+      )}
     </div>
   );
 }

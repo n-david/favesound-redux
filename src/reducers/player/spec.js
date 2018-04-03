@@ -42,20 +42,19 @@ describe('player reducer', () => {
     });
   });
 
-
   describe('RESET_PLAYLIST', () => {
     it('resets a player', () => {
       const action = actionCreators.emptyPlaylist();
       const previousState = {
         activeTrackId: 1,
         isPlaying: true,
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       const expectedState = {
         activeTrackId: 1,
         isPlaying: true,
-        playlist: []
+        playlist: [],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -69,13 +68,13 @@ describe('player reducer', () => {
       const previousState = {
         activeTrackId: null,
         isPlaying: false,
-        playlist: []
+        playlist: [],
       };
 
       const expectedState = {
         activeTrackId: 1,
         isPlaying: false,
-        playlist: []
+        playlist: [],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -87,13 +86,13 @@ describe('player reducer', () => {
       const previousState = {
         activeTrackId: 2,
         isPlaying: false,
-        playlist: []
+        playlist: [],
       };
 
       const expectedState = {
         activeTrackId: 3,
         isPlaying: false,
-        playlist: []
+        playlist: [],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -105,13 +104,13 @@ describe('player reducer', () => {
       const previousState = {
         activeTrackId: 1,
         isPlaying: true,
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       const expectedState = {
         activeTrackId: null,
         isPlaying: true,
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -125,13 +124,13 @@ describe('player reducer', () => {
       const previousState = {
         activeTrackId: 1,
         isPlaying: null,
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       const expectedState = {
         activeTrackId: 1,
         isPlaying: 'Ibiza',
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -144,13 +143,13 @@ describe('player reducer', () => {
       const previousState = {
         activeTrackId: 1,
         isPlaying: false,
-        playlist: [1, 2]
+        playlist: [1, 2],
       };
 
       const expectedState = {
         activeTrackId: 1,
         isPlaying: false,
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -164,13 +163,13 @@ describe('player reducer', () => {
       const previousState = {
         activeTrackId: 1,
         isPlaying: false,
-        playlist: [1, 2, 3]
+        playlist: [1, 2, 3],
       };
 
       const expectedState = {
         activeTrackId: 1,
         isPlaying: false,
-        playlist: [1, 3]
+        playlist: [1, 3],
       };
 
       expect(player(previousState, action)).to.eql(expectedState);
@@ -182,12 +181,12 @@ describe('player reducer', () => {
       const action = actionCreators.setTrackVolume(newVolume);
       const previousState = {
         activeTrackId: 1,
-        volume: 70
+        volume: 70,
       };
 
       const expectedState = {
         activeTrackId: 1,
-        volume: 20
+        volume: 20,
       };
       expect(player(previousState, action)).to.eql(expectedState);
     });

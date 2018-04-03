@@ -10,7 +10,7 @@ import { getCommentProperty } from '../../services/string';
 export function setOpenComments(trackId) {
   return {
     type: actionTypes.OPEN_COMMENTS,
-    trackId
+    trackId,
   };
 }
 
@@ -18,17 +18,20 @@ export function mergeComments(comments, trackId) {
   return {
     type: actionTypes.MERGE_COMMENTS,
     comments,
-    trackId
+    trackId,
   };
 }
 
 export const fetchComments = (trackId, nextHref) => (dispatch, getState) => {
   const requestProperty = getCommentProperty(trackId);
-  const initUrl = 'tracks/' + trackId + '/comments?linked_partitioning=1&limit=20&offset=0';
+  const initUrl =
+    'tracks/' + trackId + '/comments?linked_partitioning=1&limit=20&offset=0';
   const url = getLazyLoadingCommentsUrl(nextHref, initUrl);
   const requestInProcess = getState().request[requestProperty];
 
-  if (requestInProcess) { return; }
+  if (requestInProcess) {
+    return;
+  }
 
   dispatch(setRequestInProcess(true, requestProperty));
 
@@ -43,7 +46,7 @@ export const fetchComments = (trackId, nextHref) => (dispatch, getState) => {
     });
 };
 
-export const openComments = (trackId) => (dispatch, getState) => {
+export const openComments = trackId => (dispatch, getState) => {
   const comments = getState().comment.comments[trackId];
 
   dispatch(setOpenComments(trackId));
