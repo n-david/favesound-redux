@@ -33,6 +33,7 @@
     "no-else-return": 0,
     "arrow-body-style": 0,
     "no-use-before-define": 0,
+    "no-mixed-operators": 0,
     "space-before-function-paren": [2, { "anonymous": "never", "named": "never" }],
     "max-len": [1, 120, 2, {ignoreComments: true}]
   }
